@@ -8,12 +8,6 @@ class Hamming
       raise ArgumentError, "Both strands must be of equal length"
     end
 
-    hamming_distance = 0
-    until strand_a.empty? do
-      if strand_a.slice!(0) != strand_b.slice!(0)
-        hamming_distance += 1
-      end
-    end
-    hamming_distance
+    strand_a.length.times.count { |i| strand_a[i] != strand_b[i] }
   end
 end
