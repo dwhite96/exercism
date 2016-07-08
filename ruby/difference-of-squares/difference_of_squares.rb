@@ -8,30 +8,24 @@ class Squares
   end
 
   def square_of_sum
-    self.sum**2
+    sum { |i| i } ** 2
   end
 
   def sum_of_squares
-    square = 0
-    for i in 1..@value
-      square += i**2
-    end
-    square
+    sum { |i| i ** 2 }
   end
 
   def difference
     square_of_sum - sum_of_squares
   end
 
-  def sum
+  private
+
+  def sum(&block)
     sum = 0
     for i in 1..@value
-      sum += i
+      sum += block.call(i)
     end
     sum
-  end
-
-  def square
-    self**2
   end
 end
